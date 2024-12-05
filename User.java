@@ -1,41 +1,32 @@
-// public class User{
-//     private int feeling;
-//     private int pain;
-//     boolean crisis;
+public class User{
+    private int feeling;
+    private int pain;
+    boolean crisis;
 
+    public User (int f, int p){
+        feeling = f;
+        pain = p;
+    }
 
-// }
-
-// //Setter methods values
-// public void setfeeling(int f){
-//     feeling = f;
+    public void setfeeling(int f){
+        feeling = f;
+        
+    }
+    public void setpain(int p){
+        pain = p;
+        
+    }
     
-// }
-// public void setpain(int p){
-//     pain = p;
-    
-// }
-
-// public void setcrisis(boolean c){
-//     crisis = c;
-// }
+    public void setcrisis(boolean c){
+        crisis = c;
+    }
 
 
-// //getter methods
-// public int getfeeling(){
-//     return f;
-
-// }
-
-// public int getpain(){
-//     return p;
-// }
+}
 
 
 
-// public boolean getcrisis(){
-//     return c;
-// }
+
 
 
 

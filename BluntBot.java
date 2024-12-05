@@ -1,14 +1,4 @@
-import java.util.Scanner;
-
 public class BluntBot {
-    private HealthTopic[] topics;
-    private String[] generalResponses = {
-        "Physical activity is important for health",
-        "Eating balanced meals is good for you",
-        "Mental health is as important as physical health",
-        "I'm here to help you",
-        "Sleep is critical"
-    };
     private String[] unknownResponses = {
         "No clue what you’re saying. Try asking better questions.",
         "I don’t have all the answers. I’m just a chatbot, not a miracle worker.",
@@ -18,22 +8,24 @@ public class BluntBot {
     public String getUnknownResponses (int num){
         return (unknownResponses[num]);
     }
+
     public String[] helloResponses = {
-        "Blunt Bot: Hey. I’m Blunt Bot. I talk about Physical Health, Nutrition, and Mental Health. Ask me about one of those topics. Say 'bye' or 'exit' to stop the chat" + //
+        "Hey. I’m Blunt Bot. I talk about Physical Health, Nutrition, and Mental Health. Ask me about one of those topics. Say 'bye' or 'exit' to stop the chat. " + 
                         "Don’t ask me dumb stuff—I don’t have time for it.",
-        "Blunt Bot: Hi. I’m Blunt Bot. I’m here to help, not to coddle. Let’s keep this quick. Choose one between physical health, nuttrition, or mental health. Say 'bye' or 'exit' to stop the chat",
-        "Blunt Bot: Yo. I’m Blunt Bot. Got questions about health? Ask me. Got nonsense? Keep it to yourself. Ask me about Physical Health, Nutrition, or Mental Health. Say 'bye' or 'exit' to stop the chat"
+        "Hi. I’m Blunt Bot. I’m here to help, not to coddle. Let’s keep this quick. Choose one between physical health, nuttrition, or mental health. Say 'bye' or 'exit' to stop the chat",
+        "Yo. I’m Blunt Bot. Got questions about health? Ask me. Got nonsense? Keep it to yourself. Ask me about Physical Health, Nutrition, or Mental Health. Say 'bye' or 'exit' to stop the chat"
     };
     public String getHelloResponses (int num){
         return (helloResponses[num]);
     }
+
     public String[] fineResponses = {
         "You’re good. You don’t need me. Figure it out yourself.",
         "You're not broken. Get on with it.",
         "Seriously, why are you here? You can handle it."
     };
-    public String getmentalResponses (int num){
-        return (mentalResponses[num]);
+    public String getfineResponses (int num){
+        return (fineResponses[num]);
     }
 
     public String[] mentalResponses = {
@@ -48,9 +40,11 @@ public class BluntBot {
         "Cry, then move. Do something to snap out of it.",
         "Let it out, then get off your ass. Shower, walk, something."
     };
-    public String getfineResponses (int num){
-        return (fineResponses[num]);
+    public String getmentalResponses (int num){
+        return (mentalResponses[num]);
     }
+    
+    
 
     public String[] itchyResponses = {
         "Stop this conversation right now and go take a shower. It's gross",
@@ -78,14 +72,36 @@ public class BluntBot {
         return (betterResponses[num]);
     }
 
-    public String[] injuredResponses= {
+    public String[] severepainReponses = {
+        "See a doctor.",
+        "Go to the doctor.",
+        "You need a doctor.",
+        "Get checked by a doctor.",
+        "Go get medical help."
+    };
+    public String getseverepainResponses (int num) {
+        return (severepainReponses[num]);
+    }
+
+    public String[] moderatepainResponses= {
         "You’re hurt? Ice it, rest it, or see a doctor. Complaining won’t fix it.",
         "Pain happens. Figure out if it’s serious, then deal with it.",
         "If it’s a small injury, suck it up. If it’s bad, go get help. Simple.",
         "Wrap it, rest it, and stop doing whatever dumb thing got you hurt.",
     };
-    public String getinjuredResponses (int num){
-        return (injuredResponses[num]);
+    public String getmoderatepainResponses (int num){
+        return (moderatepainResponses[num]);
+    }
+
+    public String[] mildpainResponses = {
+        "It's just pain. Tough it out.",
+        "It’s not that bad. Deal with it.",
+        "Pain’s not the problem. Just endure it.",
+        "Suck it up. It’s nothing.",
+        "It hurts? So what. Keep going."
+    };
+    public String getmildpainResponses (int num){
+        return (mildpainResponses[num]);
     }
 
     public String[] dehydratedResponses = {
@@ -100,115 +116,142 @@ public class BluntBot {
         return (dehydratedResponses[num]);
     }
 
-    public BluntBot() {
-        topics = new HealthTopic[]{
-            new HealthTopic("Physical Health", "Staying active keeps you healthy", new String[]{"Try being active for 30 mins daily.", "Consider yoga for flexibility.", "Strength training is great for muscles!"}),
-            new HealthTopic("Nutrition", "Eating well keeps you from getting sick.", new String[]{"Include more veggies in meals.", "Drink plenty of water daily.", "Eat balanced meals with protein, carbs, and fats."}),
-            new HealthTopic("Mental Health", "Take care of your mind", new String[]{"Practice deep breathing.", "Take breaks when stressed", "Talk to friends or family about feelings."})
-        };
+    public String[] fatResponses = {
+        "Fats fuel your body and help absorb vitamins. Eat avocados, olive oil, or nuts.",
+        "Fats are needed for energy and cell function. Try salmon, chia seeds, or peanut butter.",
+        "Fats help with hormone production and skin health. Go for eggs, cheese, or coconut oil."
+    };
+    public String getfatResponses (int num){
+        return (fatResponses[num]);
     }
 
-    public void startChat() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Blunt Bot. Ask me about health topics like Physical Health, Nutrition, or Mental Health. Say 'exit' 'bye' or 'i'm done' to stop");
-
-        while (true) {
-            System.out.print("You: ");
-            String input = scanner.nextLine().toLowerCase();
-
-            // Check for multiple exit keywords
-            if (input.contains("exit") || input.contains("bye") || input.contains("i'm done")) {
-                System.out.println("Blunt Bot: bye. Remember, health is wealth. Goodbye!");
-                break;
-            }
-
-            respond(input);
-        }
-        scanner.close();
+    public String[] carbResponses = {
+        "Carbs provide energy for your body. Eat rice, bread, or pasta.",
+        "Carbs are your main energy source. Try oats, potatoes, or fruit.",
+        "Carbs fuel your brain and muscles. Go for quinoa, corn, or beans."
+    };
+    public String getcarbResponses (int num){
+        return (carbResponses[num]);
     }
 
-    private void respond(String input) {
-        if (input.contains("physical health")) {
-            System.out.println("Blunt Bot: physical health is vital to stasy healthy");
-        } 
-        else if (input.contains("nutrition")) {
-            System.out.println("Blunt Bot: if you want to stay healthy stop eating as much fast food");
-        } 
-        else if (input.contains("mental health")) {
-            System.out.println("Blunt Bot: Have you tried walking or going outside to improve your mental health?");
-        } 
-        else if (input.contains("exercise")) {
-            System.out.println("Blunt Bot: Exercise boosts your mood and helps you stay healthy! Try to get at least 30 minutes each day.");
-        } 
-        else if (input.contains("hydration")) {
-            System.out.println("Blunt Bot: Staying hydrated is crucial! Aim for about 8 glasses of water daily.");
-        } 
-        else if (input.contains("stress")) {
-            System.out.println("Blunt Bot: Stress is well stressful. Try taking a deep breath or taking a break to help manage it.");
-        } 
-        else if (input.contains("hurt")) {
-            System.out.println("Blunt Bot: If the pain is over a 4 on a scale of 1-10 take some pain medication");
-        }
-        else if (input.contains("hurting")) {
-            System.out.println("Blunt Bot: If your pain is over a 7 its time for some intervention. Call 911 or your nearest Doctor");
-        }
-        else if (input.contains("depressed")) {
-            System.out.println("Blunt Bot: are you really depressed or are you just saying that?");
-        }
-        else if (input.contains("sad")) {
-            System.out.println("Blunt Bot: Try and identify what is making you sad or upset");
-        }
-        else if (input.contains("upset")) {
-            System.out.println("Blunt Bot: Try and identify what is making you sad or upset");
-        }
-        else if (input.contains("broken")) {
-            System.out.println("Blunt Bot: If you think you have a broken bone call 911! (you should know this)");
-        }
+    public String[] proteinResponses = {
+        "Protein builds and repairs muscles. Eat chicken, tofu, or eggs.",
+        "Protein supports growth and recovery. Try beef, lentils, or Greek yogurt.",
+        "Protein is key for body repair. Go for fish, beans, or nuts."
+    };
+    public String getproteinResponses (int num){
+        return (proteinResponses[num]);
+    }
 
-        else if (input.contains("dehydrated")) {
-            System.out.println("Blunt Bot: Drink some water! If that doesn't work mix in some salt");
-        }
-        else if (input.contains("scared")) {
-            System.out.println("Blunt Bot: Try and identify what is making you scared. Maybe try facing your fears");
-        }
-        else if (input.contains("anxious")) {
-            System.out.println("Blunt Bot: Calm down.");
-        }
-        else if (input.contains("eat")) {
-            System.out.println("Blunt Bot: Hungry? Eat something healthy. No chips.");
-        }
-        else if (input.contains("hi")) {
-            System.out.println("Blunt Bot: Hello.");
-        }
-        else if (input.contains("hello")) {
-            System.out.println("Blunt Bot: What do you want from me?");
-        }
+//     public BluntBot() {
+//         topics = new HealthTopic[]{
+//             new HealthTopic("Physical Health", "Staying active keeps you healthy", new String[]{"Try being active for 30 mins daily.", "Consider yoga for flexibility.", "Strength training is great for muscles!"}),
+//             new HealthTopic("Nutrition", "Eating well keeps you from getting sick.", new String[]{"Include more veggies in meals.", "Drink plenty of water daily.", "Eat balanced meals with protein, carbs, and fats."}),
+//             new HealthTopic("Mental Health", "Take care of your mind", new String[]{"Practice deep breathing.", "Take breaks when stressed", "Talk to friends or family about feelings."})
+//         };
+//     }
 
-        else if (input.contains("hey")) {
-            System.out.println("Blunt Bot: Hi there. What do you need?");
-        }
-        else if (input.contains("nothing")) {
-            System.out.println("Blunt Bot: its always something.");
-        }
-        else if (input.contains("sick")) {
-            System.out.println("Blunt Bot: Is it a cold? Maybe try some cold medicine.");
-        }
+//     public void startChat() {
+//         Scanner scanner = new Scanner(System.in);
+//         System.out.println("Welcome to Blunt Bot. Ask me about health topics like Physical Health, Nutrition, or Mental Health. Say 'exit' 'bye' or 'i'm done' to stop");
+
+//         while (true) {
+//             System.out.print("You: ");
+//             String input = scanner.nextLine().toLowerCase();
+
+//             // Check for multiple exit keywords
+//             if (input.contains("exit") || input.contains("bye") || input.contains("i'm done")) {
+//                 System.out.println("Blunt Bot: bye. Remember, health is wealth. Goodbye!");
+//                 break;
+//             }
+
+//             respond(input);
+//         }
+//         scanner.close();
+//     }
+
+//     private void respond(String input) {
+//         if (input.contains("physical health")) {
+//             System.out.println("Blunt Bot: physical health is vital to stasy healthy");
+//         } 
+//         else if (input.contains("nutrition")) {
+//             System.out.println("Blunt Bot: if you want to stay healthy stop eating as much fast food");
+//         } 
+//         else if (input.contains("mental health")) {
+//             System.out.println("Blunt Bot: Have you tried walking or going outside to improve your mental health?");
+//         } 
+//         else if (input.contains("exercise")) {
+//             System.out.println("Blunt Bot: Exercise boosts your mood and helps you stay healthy! Try to get at least 30 minutes each day.");
+//         } 
+//         else if (input.contains("hydration")) {
+//             System.out.println("Blunt Bot: Staying hydrated is crucial! Aim for about 8 glasses of water daily.");
+//         } 
+//         else if (input.contains("stress")) {
+//             System.out.println("Blunt Bot: Stress is well stressful. Try taking a deep breath or taking a break to help manage it.");
+//         } 
+//         else if (input.contains("hurt")) {
+//             System.out.println("Blunt Bot: If the pain is over a 4 on a scale of 1-10 take some pain medication");
+//         }
+//         else if (input.contains("hurting")) {
+//             System.out.println("Blunt Bot: If your pain is over a 7 its time for some intervention. Call 911 or your nearest Doctor");
+//         }
+//         else if (input.contains("depressed")) {
+//             System.out.println("Blunt Bot: are you really depressed or are you just saying that?");
+//         }
+//         else if (input.contains("sad")) {
+//             System.out.println("Blunt Bot: Try and identify what is making you sad or upset");
+//         }
+//         else if (input.contains("upset")) {
+//             System.out.println("Blunt Bot: Try and identify what is making you sad or upset");
+//         }
+//         else if (input.contains("broken")) {
+//             System.out.println("Blunt Bot: If you think you have a broken bone call 911! (you should know this)");
+//         }
+
+//         else if (input.contains("dehydrated")) {
+//             System.out.println("Blunt Bot: Drink some water! If that doesn't work mix in some salt");
+//         }
+//         else if (input.contains("scared")) {
+//             System.out.println("Blunt Bot: Try and identify what is making you scared. Maybe try facing your fears");
+//         }
+//         else if (input.contains("anxious")) {
+//             System.out.println("Blunt Bot: Calm down.");
+//         }
+//         else if (input.contains("eat")) {
+//             System.out.println("Blunt Bot: Hungry? Eat something healthy. No chips.");
+//         }
+//         else if (input.contains("hi")) {
+//             System.out.println("Blunt Bot: Hello.");
+//         }
+//         else if (input.contains("hello")) {
+//             System.out.println("Blunt Bot: What do you want from me?");
+//         }
+
+//         else if (input.contains("hey")) {
+//             System.out.println("Blunt Bot: Hi there. What do you need?");
+//         }
+//         else if (input.contains("nothing")) {
+//             System.out.println("Blunt Bot: its always something.");
+//         }
+//         else if (input.contains("sick")) {
+//             System.out.println("Blunt Bot: Is it a cold? Maybe try some cold medicine.");
+//         }
         
-        else {
-            respondGenerallyOrUnknown();
-        }
-    }
+//         else {
+//             respondGenerallyOrUnknown();
+//         }
+//     }
 
-    private void respondWithTopic(int topicIndex) {
-        HealthTopic topic = topics[topicIndex];
-        System.out.println("Blunt Bot: " + topic.getRandomTip());
-    }
+//     private void respondWithTopic(int topicIndex) {
+//         HealthTopic topic = topics[topicIndex];
+//         System.out.println("Blunt Bot: " + topic.getRandomTip());
+//     }
 
-    private void respondGenerallyOrUnknown() {
-        if (Math.random() > 0.5) {
-            System.out.println("Blunt Bot: " + generalResponses[(int) (Math.random() * generalResponses.length)]);
-        } else {
-            System.out.println("Blunt Bot: " + unknownResponses[(int) (Math.random() * unknownResponses.length)]);
-        }
-    }
+//     private void respondGenerallyOrUnknown() {
+//         if (Math.random() > 0.5) {
+//             System.out.println("Blunt Bot: " + generalResponses[(int) (Math.random() * generalResponses.length)]);
+//         } else {
+//             System.out.println("Blunt Bot: " + unknownResponses[(int) (Math.random() * unknownResponses.length)]);
+//         }
+//     }
 }
